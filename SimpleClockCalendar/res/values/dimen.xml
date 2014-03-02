@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="clockTimeSize">16sp</dimen>
+    <dimen name="clockDateSize">10sp</dimen>
+    <dimen name="wedgitWidthSize">146dp</dimen>
+    <dimen name="wedgitHeightSize">72dp</dimen>
+    <dimen name="calendarMonthSize">10sp</dimen>
+    <dimen name="calendarDaySize">8.4sp</dimen>
+    <dimen name="calendarDayWidth">12sp</dimen>
+</resources>

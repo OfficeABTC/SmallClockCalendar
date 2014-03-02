@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="clockTimeColor">#ff00D0ff</color>
+    <color name="clockDateColor">#ff40E000</color>
+    <color name="background">#80323232</color>
+    <color name="calendarYearColor">#ff40E000</color>
+    <color name="calendarDayColor">#ffffe000</color>
+    <color name="weekSunColor">#ffff6060</color>
+    <color name="weekSatColor">#ff00d0f0</color>
+    
+</resources>

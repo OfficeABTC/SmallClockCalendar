@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Small Clock Calendark</string>
+    <string name="strSun">U</string>
+    <string name="strMon">M</string>
+    <string name="strTue">T</string>
+    <string name="strWed">W</string>
+    <string name="strThu">R</string>
+    <string name="strFri">F</string>
+    <string name="strSat">S</string>
+</resources>

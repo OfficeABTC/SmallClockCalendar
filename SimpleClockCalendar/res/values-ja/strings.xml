@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">小さなカレンダー時計</string>
+    <string name="strSun">日</string>
+    <string name="strMon">月</string>
+    <string name="strTue">火</string>
+    <string name="strWed">水</string>
+    <string name="strThu">木</string>
+    <string name="strFri">金</string>
+    <string name="strSat">土</string>
+</resources>
