@@ -22,12 +22,10 @@ public class ClockCalendarService extends Service {
 	@SuppressLint("SimpleDateFormat")
 	private final SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd(EE)");
 
-	private boolean isJapanese = false;
 	private String time;
 	private String date;
 	private String year;
-	private String yearG;
-	private String[] days = new String[42];
+	private String[] days;
 	
 	private Calendar now;
 //	private Calendar today;
@@ -60,8 +58,6 @@ public class ClockCalendarService extends Service {
 	private void setYear(){
 		int value = now.get(Calendar.YEAR);
 		year = String.valueOf(value);
-		value = value % 100 + 12;
-		yearG = "H." + String.valueOf(value);
 	}
 
 
@@ -95,6 +91,7 @@ public class ClockCalendarService extends Service {
 			cal.add(Calendar.DATE, 1);
 			i++;
 		}
+		cal = null;
 //		today = (Calendar) now.clone();
 	}
 	private void setAlarm(){
@@ -113,40 +110,38 @@ public class ClockCalendarService extends Service {
 	@Override
 	public int onStartCommand(Intent intent, int flags, int id){
 		super.onStartCommand(intent, flags, id);
-		
-		if(intent.getBooleanExtra(ClockCalendarProvider.yearChange, false)){
-			isJapanese = !isJapanese;
-		}
 
-		setClock();
-		setYear();
-		setDay();
-		
-		AppWidgetManager manager = AppWidgetManager.getInstance(this);
-		RemoteViews views = new RemoteViews(getPackageName(), R.layout.main);
+		days = new String[42];
 
-		views.setTextViewText(R.id.idClockTime, time);
-		views.setTextViewText(R.id.idClockDate, date);
-		if(isJapanese){
-			views.setTextViewText(R.id.idCalendarYear, yearG);
-		} else {
-			views.setTextViewText(R.id.idCalendarYear, year);
-		}
-		
-		int i=0;
-		for(int j: idDays){
-			views.setTextViewText(j, days[i]);
-			if(days[i].equals(String.valueOf(now.get(Calendar.DATE)))){
-				views.setInt(j, "setBackgroundColor", Color.argb(0x44, 0x0, 0xff, 0x00));
-			} else {
-				views.setInt(j, "setBackgroundColor", Color.argb(0x00, 0x0, 0x00, 0x00));
+		try {
+			setClock();
+			setYear();
+			setDay();
+			
+			AppWidgetManager manager = AppWidgetManager.getInstance(this);
+			RemoteViews wv = new RemoteViews(getPackageName(), R.layout.main);
+//			RemoteViews nv = new RemoteViews(getPackageName(), R.layout.notify);
+	
+			wv.setTextViewText(R.id.idClockTime, time);
+			wv.setTextViewText(R.id.idClockDate, date);
+			wv.setTextViewText(R.id.idCalendarYear, year);
+			
+			int i=0;
+			for(int j: idDays){
+				wv.setTextViewText(j, days[i]);
+				if(days[i].equals(String.valueOf(now.get(Calendar.DATE)))){
+					wv.setInt(j, "setBackgroundColor", Color.argb(0x44, 0x0, 0xff, 0x00));
+				} else {
+					wv.setInt(j, "setBackgroundColor", Color.argb(0x00, 0x0, 0x00, 0x00));
+				}
+				i++;
 			}
-			i++;
+			
+			ComponentName wedgit = new ComponentName(this, ClockCalendarProvider.class);
+			manager.updateAppWidget(wedgit, wv);
+		} finally {
+			days = null;
 		}
-		
-		ComponentName wedgit = new ComponentName(this, ClockCalendarProvider.class);
-		manager.updateAppWidget(wedgit, views);
-		
 		setAlarm();
 		return START_STICKY;
 	}
