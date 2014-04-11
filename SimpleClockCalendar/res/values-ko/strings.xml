@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">작은 캘린더 시계</string>
+    <string name="strSun">일</string>
+    <string name="strMon">월</string>
+    <string name="strTue">화</string>
+    <string name="strWed">수</string>
+    <string name="strThu">목</string>
+    <string name="strFri">금</string>
+    <string name="strSat">토</string>
+</resources>

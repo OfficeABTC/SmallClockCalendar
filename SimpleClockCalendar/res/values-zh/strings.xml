@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="app_name">小日历钟</string>
+    <string name="strSun">日</string>
+    <string name="strMon">一</string>
+    <string name="strTue">二</string>
+    <string name="strWed">三</string>
+    <string name="strThu">四</string>
+    <string name="strFri">五</string>
+    <string name="strSat">六</string>
+</resources>
